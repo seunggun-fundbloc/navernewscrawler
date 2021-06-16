@@ -1,7 +1,7 @@
 import json
 import argparse
 import datetime as dt
-from navernewscrawler.naver_crawler import get_news, get_dates, output
+from naver_crawler import get_news, get_dates, output
 import csv
 
 def main():
@@ -46,3 +46,15 @@ def main():
                 jsonfile.close()
     except KeyboardInterrupt:
         logger.info("Program interrupted by user. Quitting...")
+
+
+if __name__ == "__main__":
+    query = '부동산'
+    page = 1
+    max_page = 5
+    start_date = '2021-01-01'
+    end_date = '2021-01-31'
+
+    news_dicts = output(query, page, max_page, start_date, end_date)\
+    
+    print(news_dicts)

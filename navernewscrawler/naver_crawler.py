@@ -97,10 +97,10 @@ def output(query,page,max_page,start_date,end_date):
             req = requests.get(url,headers=header)
             cont = req.content
             soup = BeautifulSoup(cont, 'html.parser')
-            for urls in soup.select("._sp_each_url"):
+            for url in soup.find_all('a', href=True):
                 try:
-                    if urls["href"].startswith("https://news.naver.com"):
-                        news_detail = get_news(urls["href"])
+                    if url['href'].startswith('https://news.naver.com'):
+                        news_detail = get_news(url["href"])
                         adict = dict()
                         adict["title"] = news_detail[0]
                         adict["date"] = news_detail[1]
